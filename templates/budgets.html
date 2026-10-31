@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block body %}
+<section class="card">
+  <form id="budgetForm" class="filters">
+    <label>Month<input type="month" id="monthPicker" required></label>
+    <label>Category<select name="category_id" id="budgetCat" required></select></label>
+    <label>Monthly limit (₹)<input type="number" name="amount_limit" min="0.01" step="0.01" required></label>
+    <button class="btn primary" type="submit">Set budget</button>
+    <button class="btn push-right" type="button" id="copyBtn">Copy from previous month</button>
+  </form>
+</section>
+<div id="alerts"></div>
+<section class="card">
+  <h3>Budget vs actual spending</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Category</th><th class="num">Budget</th><th class="num">Spent</th><th class="num">Remaining</th><th style="min-width:160px">Usage</th><th>Actions</th></tr></thead>
+    <tbody id="budgetBody"></tbody>
+  </table></div>
+</section>
+{% endblock %}

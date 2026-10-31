@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login | Expense Tracker</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body data-page="login" class="auth-body">
+  <div class="auth-card">
+    <h2>💰 Expense Tracker</h2>
+    <p class="muted">Log in to manage your money</p>
+    <form id="authForm" autocomplete="on">
+      <label>Email<input type="email" name="email" required></label>
+      <label>Password<input type="password" name="password" required></label>
+      <button class="btn primary full" type="submit">Login</button>
+    </form>
+    <p class="muted center">New here? <a href="{{ url_for('register_page') }}">Create an account</a></p>
+    <p class="muted center small">Demo: demo@example.com / Demo@123</p>
+  </div>
+  <div id="toasts"></div>
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

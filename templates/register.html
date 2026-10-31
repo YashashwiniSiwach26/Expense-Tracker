@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Register | Expense Tracker</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body data-page="register" class="auth-body">
+  <div class="auth-card">
+    <h2>Create account</h2>
+    <p class="muted">Start tracking your income and expenses</p>
+    <form id="authForm">
+      <label>Full name<input type="text" name="full_name" required minlength="2" maxlength="100"></label>
+      <label>Email<input type="email" name="email" required></label>
+      <label>Password<input type="password" name="password" required minlength="8">
+        <small class="muted">Min 8 characters, with a letter and a number</small></label>
+      <button class="btn primary full" type="submit">Register</button>
+    </form>
+    <p class="muted center">Already registered? <a href="{{ url_for('login_page') }}">Login</a></p>
+  </div>
+  <div id="toasts"></div>
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

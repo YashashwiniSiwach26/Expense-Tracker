@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title }} | Expense Tracker</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body data-page="{{ page }}" data-kind="{{ kind|default('') }}">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">💰 <span>ExpenseTracker</span></div>
+    <nav>
+      <a href="{{ url_for('dashboard_page') }}" class="{{ 'active' if page=='dashboard' }}">📊 Dashboard</a>
+      <a href="{{ url_for('income_page') }}"    class="{{ 'active' if page=='income' }}">⬆️ Income</a>
+      <a href="{{ url_for('expenses_page') }}"  class="{{ 'active' if page=='expenses' }}">⬇️ Expenses</a>
+      <a href="{{ url_for('budgets_page') }}"   class="{{ 'active' if page=='budgets' }}">🎯 Budgets</a>
+      <a href="{{ url_for('reports_page') }}"   class="{{ 'active' if page=='reports' }}">📑 Reports</a>
+    </nav>
+    <div class="user-box">
+      <div class="user-name">👤 {{ session.get('full_name') }}</div>
+      <a href="{{ url_for('logout') }}" class="logout">Logout</a>
+    </div>
+  </aside>
+  <main class="content">
+    <header class="topbar">
+      <button class="menu-btn" id="menuBtn" aria-label="Menu">☰</button>
+      <h1>{{ title }}</h1>
+    </header>
+    {% block body %}{% endblock %}
+  </main>
+  <div id="toasts"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

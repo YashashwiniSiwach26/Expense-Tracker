@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block body %}
+<section class="card">
+  <form id="filterForm" class="filters">
+    <label>From<input type="date" name="from"></label>
+    <label>To<input type="date" name="to"></label>
+    <label>{{ 'Source' if kind=='income' else 'Category' }}<select name="category_id" id="filterCat"><option value="">All</option></select></label>
+    <label>Min amount<input type="number" name="min" min="0.01" step="0.01"></label>
+    <label>Max amount<input type="number" name="max" min="0.01" step="0.01"></label>
+    <button class="btn" type="submit">Filter</button>
+    <button class="btn ghost" type="button" id="clearFilter">Clear</button>
+    <button class="btn primary push-right" type="button" id="addBtn">+ Add {{ 'income' if kind=='income' else 'expense' }}</button>
+  </form>
+</section>
+<section class="card">
+  <div class="table-head"><h3>{{ 'Income records' if kind=='income' else 'Expense records' }}</h3><span id="totalLabel" class="muted"></span></div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Date</th><th>{{ 'Source' if kind=='income' else 'Category' }}</th><th>Description</th><th class="num">Amount</th><th>Actions</th></tr></thead>
+    <tbody id="txnBody"></tbody>
+  </table></div>
+</section>
+
+<dialog id="txnDialog">
+  <form id="txnForm" method="dialog">
+    <h3 id="dialogTitle">Add record</h3>
+    <input type="hidden" name="id">
+    <label>{{ 'Source' if kind=='income' else 'Category' }}<select name="category_id" id="formCat" required></select></label>
+    <label>Amount (₹)<input type="number" name="amount" min="0.01" step="0.01" required></label>
+    <label>Date<input type="date" name="txn_date" required></label>
+    <label>Description<input type="text" name="description" maxlength="255"></label>
+    <div class="dialog-actions">
+      <button class="btn ghost" type="button" id="cancelBtn">Cancel</button>
+      <button class="btn primary" type="submit">Save</button>
+    </div>
+  </form>
+</dialog>
+{% endblock %}
